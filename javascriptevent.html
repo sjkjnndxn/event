@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java script event</title>
+
+
+    <style>
+
+
+        body {
+	font-family: "Montserrat", sans-serif;
+}
+
+.row {
+	display: flex;
+}
+
+.column {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+}
+
+section {
+	width: 90%;
+	margin: 20px auto;
+	justify-content: space-between;
+}
+
+img {
+	width: 100%;
+}
+
+#main_image_box {
+	width: 40%;
+}
+
+#content {
+	width: 55%;
+}
+
+#name {
+	font-weight: 300;
+    font-size: 44px;
+    letter-spacing: -2px;
+    margin-bottom: 0px;
+}
+
+h3, h4 {
+	margin-top: 20px;
+	margin-bottom: 0px;
+    font-weight: 200;
+    font-size: 20px;
+    letter-spacing: 1px;
+    color: #1b1919;
+}
+
+#price_value {
+	color: #009688;
+    font-weight: bold;
+}
+
+#description {
+	margin-top: 20px;
+    font-size: 16px;
+    font-weight: 300;
+    color: #86939e;
+}
+
+#preview_images img {
+	margin: 5px;
+    width: 15%;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 6px;
+}
+
+.active {
+	border: 2px solid #009688;
+}
+
+#add_to_cart_btn {
+	width: fit-content;
+	font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+    padding: 10px 20px;
+    letter-spacing: 2px;
+    background-color: #009688;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgb(0 0 0 / 50%);
+    margin-top: 20px;
+}
+
+@media only screen and (max-width: 600px)
+{
+	section {
+		width: 95%;
+		flex-wrap: wrap;
+	}
+
+	#main_image_box {
+		width: 100%;
+	}
+
+	#content {
+		width: 100%;
+	}
+}
+
+
+    </style>
+</head>
+<body>
+    
+
+
+
+
+
+<section id="main" class="row">
+    <div id="main_image_box">
+        <img id="main_image" data-img="image_0" src="">
+    </div>
+    <div id="content" class="column">
+        <h1 id="name">[name]</h1>
+        <h4 id="brand">[brand]</h4>
+        <h3 id="price">Price: Rs <span id="price_value">[price]</span></h3>
+        <div id="description_box" class="column">
+            <h3>Description</h3>
+            <p id="description">[description]</p>
+        </div>
+        <div id="product_preview_box" class="column">
+            <h3>Product Preview</h3>
+            <div id="preview_images" class="row">
+                <!-- item images -->
+            </div>
+        </div>
+        <button id="add_to_cart_btn">Add to Cart</button>
+    </div>
+</section>
+
+
+</body>
+
+<script>
+
+
+    var productData = {
+    "id": "1",
+    "name": "Men Navy Blue Solid Sweatshirt",
+    "preview": "https://assets.myntassets.com/h_1440,q_100,w_1080/v1/assets/images/7579188/2018/11/5/08a7b230-ee8f-46c0-a945-4e835a3c01c01541402833619-United-Colors-of-Benetton-Men-Sweatshirts-1271541402833444-1.jpg",
+    "photos": [
+            "https://assets.myntassets.com/h_1440,q_100,w_1080/v1/assets/images/7579188/2018/11/5/08a7b230-ee8f-46c0-a945-4e835a3c01c01541402833619-United-Colors-of-Benetton-Men-Sweatshirts-1271541402833444-1.jpg",
+            "https://assets.myntassets.com/h_1440,q_100,w_1080/v1/assets/images/7579188/2018/11/5/efc3d5b9-1bb3-4427-af53-7acae7af98951541402833591-United-Colors-of-Benetton-Men-Sweatshirts-1271541402833444-2.jpg",
+            "https://assets.myntassets.com/h_1440,q_100,w_1080/v1/assets/images/7579188/2018/11/5/c7e58861-3431-4189-9903-9880f5eebd181541402833566-United-Colors-of-Benetton-Men-Sweatshirts-1271541402833444-3.jpg",
+            "https://assets.myntassets.com/h_1440,q_100,w_1080/v1/assets/images/7579188/2018/11/5/66490b64-32de-44b4-a6e4-fe36f1c040051541402833548-United-Colors-of-Benetton-Men-Sweatshirts-1271541402833444-4.jpg",
+            "https://assets.myntassets.com/h_1440,q_100,w_1080/v1/assets/images/7579188/2018/11/5/957be784-7c5d-4e90-ab9f-0928015b22891541402833645-United-Colors-of-Benetton-Men-Sweatshirts-1271541402833444-5.jpg"
+        ],
+    "description": "Navy solid sweatshirt with patchwork, has a round neck, long sleeves, straight hem",
+    "size": [
+            1,
+            1,
+            0,
+            1,
+            0
+        ],
+    "isAccessory": false,
+    "brand": "United Colors of Benetton",
+    "price": 2599
+}
+
+// apply data to page
+
+// main image
+document.getElementById("main_image").src = productData["preview"];
+
+// item name
+document.getElementById("name").innerHTML = productData["name"];
+
+// item brand
+document.getElementById("brand").innerHTML = productData["brand"];
+
+// item price
+document.getElementById("price_value").innerHTML = productData["price"];
+
+// item description
+document.getElementById("description").innerHTML = productData["description"];
+
+// item images
+for(let i = 0; i < productData["photos"].length; i++)
+{
+    // <img id="image_0" class="active" onclick="update_main_image(this);" src="">
+
+    let temp_image_tag = document.createElement("img");
+    
+    temp_image_tag.id = "image_" + i;
+    temp_image_tag.setAttribute("onclick", "update_main_image(this);");
+    temp_image_tag.src = productData["photos"][i];
+
+    if(i == 0) temp_image_tag.classList.add("active");
+
+    document.getElementById("preview_images").appendChild(temp_image_tag);
+}
+
+console.clear();
+
+function update_main_image(new_image)
+{
+	console.log(new_image.src);
+
+	let main_image = document.getElementById("main_image");
+
+	document.getElementById(main_image.dataset.img).classList.remove("active");
+	new_image.classList.add("active");
+
+	main_image.src = new_image.src;
+	main_image.dataset.img = new_image.id;
+}
+
+</script>
+</html>
